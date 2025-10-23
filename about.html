@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About No Lie</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f3f3f3;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 70px 15px 30px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Mobile Dropdown */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 10px;
+  padding: 10px 0;
+  z-index: 1000;
+}
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 25px;
+  display: block;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.mobile-menu a:hover {
+  background: #25d366;
+}
+
+/* Background Logo */
+.background-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  background: url('logo.jpg') center/contain no-repeat;
+  opacity: 0.08;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+/* About Section */
+.about-container {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 30px 25px;
+  text-align: center;
+}
+
+.about-container h1 {
+  font-size: 28px;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.about-container h2 {
+  color: #25d366;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.about-container p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Floating WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 28px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #1ebc59;
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Dropdown -->
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="store.html">🛒 Store</a>
+  <a href="about.html">ℹ️ About</a>
+</div>
+
+<!-- Background Logo -->
+<div class="background-logo"></div>
+
+<!-- About Section -->
+<div class="about-container">
+  <h1>About <span style="color:#25d366;">No Lie</span></h1>
+  <h2>Authentic Streetwear. Real Energy.</h2>
+  <p>
+    No Lie is more than just a brand — it's a movement built on truth, style, and realness.
+    We represent confidence, hustle, and authenticity. Every shirt, hoodie, and hat we design
+    tells a story of standing tall, living bold, and being unapologetically you.
+  </p>
+  <p>
+    Founded on passion and built for the streets, No Lie blends modern urban wear with clean,
+    fearless design. From casual looks to signature drops, we bring clothing that connects
+    culture, community, and creativity — no lies told.
+  </p>
+  <p>
+    Follow our journey, rock the vibe, and represent the truth.
+  </p>
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="#" class="whatsapp-float" onclick="sendToWhatsApp()">💬</a>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function sendToWhatsApp(){
+  const whatsappNumber = "2310886746991";
+  const message = "Hello No Lie 👋%0AI’m reaching out to learn more about your brand and products.";
+  const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>

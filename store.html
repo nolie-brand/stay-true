@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Lie Store</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif; }
+body {
+  background:#f3f3f3; color:#111;
+  display:flex; flex-direction:column; align-items:center;
+  min-height:100vh; padding:70px 15px 30px;
+}
+
+/* Mobile Dropdown */
+.menu-toggle {
+  position: fixed; top:20px; right:20px; font-size:30px; cursor:pointer;
+  z-index:1001; background: rgba(0,0,0,0.85); color:white;
+  width:50px; height:50px; display:flex; align-items:center; justify-content:center;
+  border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+.mobile-menu {
+  display:none; flex-direction:column; position:fixed; top:80px; right:20px;
+  background: rgba(0,0,0,0.95); border-radius:10px; padding:10px 0; z-index:1000;
+}
+.mobile-menu a { color:white; text-decoration:none; padding:10px 25px; display:block; font-weight:600; transition:0.3s; }
+.mobile-menu a:hover { background:#25d366; }
+
+/* Store Layout */
+.store-container {
+  width:100%; max-width:900px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px; margin-top:40px;
+}
+.product-card {
+  background:white; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15);
+  overflow:hidden; transition:0.3s ease; display:flex; flex-direction:column;
+}
+.product-card:hover { transform:scale(1.03); }
+.product-image { width:100%; height:220px; object-fit:cover; }
+.product-info { padding:15px 20px; flex-grow:1; }
+.product-info h3 { font-size:18px; color:#111; margin-bottom:8px; }
+.product-info p { color:#666; font-size:14px; margin-bottom:12px; }
+select,input { width:100%; padding:8px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc; }
+button { background:#25d366; border:none; color:white; padding:10px; border-radius:8px; cursor:pointer; width:100%; font-weight:600; transition:0.3s; }
+button:hover { background:#1ebc59; }
+
+/* Video Section */
+.video-section { margin-top:50px; width:100%; max-width:900px; background:white; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.1); overflow:hidden; }
+.video-section video { width:100%; height:auto; border-radius:20px; }
+
+/* Selected Products Summary */
+.summary-container {
+  width:100%; max-width:900px;
+  background:white; border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  padding:20px; margin-top:30px;
+}
+.summary-container h3 { margin-bottom:15px; color:#111; }
+.summary-item { padding:8px 0; border-bottom:1px solid #ddd; font-size:14px; }
+.summary-item:last-child { border-bottom:none; }
+
+/* Floating WhatsApp */
+.whatsapp-float {
+  position:fixed; width:55px; height:55px; bottom:20px; right:20px;
+  background-color:#25d366; color:white; border-radius:50%;
+  text-align:center; font-size:28px; box-shadow:0 0 10px rgba(0,0,0,0.2);
+  z-index:999; display:flex; align-items:center; justify-content:center; transition:0.3s ease;
+}
+.whatsapp-float:hover { transform:scale(1.1); background-color:#1ebc59; }
+</style>
+</head>
+<body>
+
+<!-- Mobile Dropdown -->
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="store.html">🛒 Store</a>
+  <a href="about.html">ℹ️ About</a>
+</div>
+
+<h2 style="margin-top:20px;">🛍️ No Lie Store</h2>
+
+<div class="store-container">
+
+  <!-- Product 1 -->
+  <div class="product-card">
+    <img src="shirt.jpg" alt="Shirt" class="product-image">
+    <div class="product-info">
+      <input type="checkbox" id="select1" onchange="updateSummary()"> <label for="select1"><strong>Select Shirt</strong></label>
+      <h3>No Lie Shirt</h3>
+      <p>$10.00</p>
+      <label>Color</label>
+      <select id="color1" onchange="updateSummary()">
+        <option>Black</option><option>White</option><option>Red</option>
+      </select>
+      <label>Size</label>
+      <select id="size1" onchange="updateSummary()">
+        <option>Small</option><option>Medium</option><option>Large</option>
+      </select>
+      <label>Quantity</label>
+      <input type="number" id="qty1" min="1" value="1" onchange="updateSummary()">
+    </div>
+  </div>
+
+  <!-- Product 2 -->
+  <div class="product-card">
+    <img src="FB_IMG_1759950617499.jpg" alt="Hoodie" class="product-image">
+    <div class="product-info">
+      <input type="checkbox" id="select2" onchange="updateSummary()"> <label for="select2"><strong>Select Hoodie</strong></label>
+      <h3>No Lie Hoodie</h3>
+      <p>$15.00</p>
+      <label>Color</label>
+      <select id="color2" onchange="updateSummary()">
+        <option>Black</option><option>Gray</option><option>White</option>
+      </select>
+      <label>Size</label>
+      <select id="size2" onchange="updateSummary()">
+        <option>Small</option><option>Medium</option><option>Large</option>
+      </select>
+      <label>Quantity</label>
+      <input type="number" id="qty2" min="1" value="1" onchange="updateSummary()">
+    </div>
+  </div>
+
+  <!-- Product 3 -->
+  <div class="product-card">
+    <img src="FB_IMG_1759950608410.jpg" alt="Bag" class="product-image">
+    <div class="product-info">
+      <input type="checkbox" id="select3" onchange="updateSummary()"> <label for="select3"><strong>Select Bag</strong></label>
+      <h3>No Lie Bag</h3>
+      <p>$5.00</p>
+      <label>Color</label>
+      <select id="color3" onchange="updateSummary()">
+        <option>Black</option><option>White</option><option>Blue</option>
+      </select>
+      <label>Size</label>
+      <select id="size3" onchange="updateSummary()">
+        <option>One Size</option>
+      </select>
+      <label>Quantity</label>
+      <input type="number" id="qty3" min="1" value="1" onchange="updateSummary()">
+    </div>
+  </div>
+
+  <!-- Product 4 -->
+  <div class="product-card">
+    <img src="bag.jpg" alt="Bag" class="product-image">
+    <div class="product-info">
+      <input type="checkbox" id="select4" onchange="updateSummary()"> <label for="select4"><strong>Select Bag</strong></label>
+      <h3>No Lie Bag</h3>
+      <p>$5.00</p>
+      <label>Color</label>
+      <select id="color4" onchange="updateSummary()">
+        <option>Black</option><option>White</option><option>Brown</option>
+      </select>
+      <label>Size</label>
+      <select id="size4" onchange="updateSummary()">
+        <option>Small</option><option>Medium</option><option>Large</option>
+      </select>
+      <label>Quantity</label>
+      <input type="number" id="qty4" min="1" value="1" onchange="updateSummary()">
+    </div>
+  </div>
+
+</div>
+
+<!-- Selected Products Summary -->
+<div class="summary-container" id="summaryContainer">
+  <h3>📝 Selected Products Summary:</h3>
+  <div id="summaryList">
+    <p style="color:#888;">No products selected yet.</p>
+  </div>
+</div>
+
+<!-- Video Section -->
+<div class="video-section">
+  <video src="VID-20250914-WA0019.mp4" controls autoplay muted loop></video>
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="#" class="whatsapp-float" onclick="sendToWhatsApp()">💬</a>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Update the summary area dynamically
+function updateSummary(){
+  const summaryList = document.getElementById('summaryList');
+  summaryList.innerHTML = ''; // Clear previous
+  let count = 0;
+
+  for(let i=1;i<=4;i++){
+    const selected = document.getElementById('select'+i).checked;
+    if(selected){
+      const color = document.getElementById('color'+i).value;
+      const size = document.getElementById('size'+i).value;
+      const qty = document.getElementById('qty'+i).value;
+      const name = document.querySelector(`#select${i} + label`).innerText.replace('Select ', '');
+      const div = document.createElement('div');
+      div.className = 'summary-item';
+      div.innerText = `${name} | Color: ${color} | Size: ${size} | Qty: ${qty}`;
+      summaryList.appendChild(div);
+      count++;
+    }
+  }
+
+  if(count === 0){
+    summaryList.innerHTML = '<p style="color:#888;">No products selected yet.</p>';
+  }
+}
+
+// Send selected products to WhatsApp
+function sendToWhatsApp(){
+  const whatsappNumber = "2310886746991";
+  const items = [];
+
+  for(let i=1;i<=4;i++){
+    const selected = document.getElementById('select'+i).checked;
+    if(selected){
+      const color = document.getElementById('color'+i).value;
+      const size = document.getElementById('size'+i).value;
+      const qty = document.getElementById('qty'+i).value;
+      const name = document.querySelector(`#select${i} + label`).innerText.replace('Select ', '');
+      items.push(`🛒 *${name}*%0AColor: ${color}%0ASize: ${size}%0AQty: ${qty}`);
+    }
+  }
+
+  if(items.length === 0){
+    alert("Please select at least one product.");
+    return;
+  }
+
+  const message = `*🛍️ No Lie Order*%0A--------------------%0A${items.join('%0A--------------------%0A')}`;
+  const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+  window.open(url, "_blank");
+}
+
+// Initial summary update
+updateSummary();
+</script>
+
+</body>
+</html>

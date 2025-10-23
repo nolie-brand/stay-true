@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Lie Home</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f3f3f3;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 70px 15px 30px;
+}
+
+/* Mobile Dropdown */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 10px;
+  padding: 10px 0;
+  z-index: 1000;
+}
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 25px;
+  display: block;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.mobile-menu a:hover {
+  background: #25d366;
+}
+
+/* Form Container with Background Image */
+.form-container {
+  position: relative;
+  width: 95%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-bg {
+  position: absolute;
+  inset: 0;
+  background: url('FB_IMG_1759946557054.jpg') center/contain no-repeat;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.order-form {
+  position: relative;
+  z-index: 2;
+  padding: 30px 25px;
+  text-align: center;
+}
+
+.order-form h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #111;
+  letter-spacing: 0.5px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #25d366;
+  outline: none;
+}
+
+/* Floating WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 28px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #1ebc59;
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Dropdown -->
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="store.html">🛒 Store</a>
+  <a href="about.html">ℹ️ About</a>
+</div>
+
+<!-- Form Section -->
+<div class="form-container">
+  <div class="form-bg"></div>
+  <div class="order-form">
+    <h2>Delivery info</h2>
+    <form id="homeForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+      <label for="address">Address</label>
+      <textarea id="address" rows="3" placeholder="Enter your address" required></textarea>
+
+      <label for="details">Additional Info</label>
+      <textarea id="details" rows="3" placeholder="Any extra details..."></textarea>
+    </form>
+  </div>
+</div>
+
+<!-- Floating WhatsApp -->
+<a href="#" class="whatsapp-float" onclick="sendToWhatsApp()">💬</a>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function sendToWhatsApp(){
+  const name=document.getElementById('name').value;
+  const phone=document.getElementById('phone').value;
+  const address=document.getElementById('address').value;
+  const details=document.getElementById('details').value;
+
+  const whatsappNumber="2310886746991"; // replace with your WhatsApp number
+  const message=`*No Lie Contact*%0A--------------------%0A📝 Name: ${name}%0A📱 Phone: ${phone}%0A🏠 Address: ${address}%0A📝 Details: ${details}`;
+
+  const url=`https://wa.me/${whatsappNumber}?text=${message}`;
+  window.open(url,'_blank');
+}
+</script>
+</body>
+</html>
